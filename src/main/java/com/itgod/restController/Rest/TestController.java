@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * date: 2020/2/17 19:23
  * author: zhangsq
+ * 任务：redis分布式锁，注解开发
  * version: 1.0
  */
 @RestController
