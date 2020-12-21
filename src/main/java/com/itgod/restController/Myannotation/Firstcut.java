@@ -9,6 +9,6 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
-public @interface firstcut {
+public @interface Firstcut {
     String Value() default "first one";
 }

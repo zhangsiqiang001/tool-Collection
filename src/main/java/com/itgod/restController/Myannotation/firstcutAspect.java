@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 @Component
 public class FirstcutAspect {
    // @Pointcut("execution(public * com.test.my.annotation.TestController.*(..)) && @annotation(com.test.my.annotation.MyAnnotation)" )
-    @Pointcut("@annotation(com.itgod.restController.Myannotation.firstcut)" )
+    @Pointcut("@annotation(com.itgod.restController.Myannotation.Firstcut)" )
     public void addAdvice(){}
     @Around("addAdvice()")
     public Object Interceptor(ProceedingJoinPoint joinPoint){
@@ -51,7 +51,7 @@ public class FirstcutAspect {
     public void before(JoinPoint joinPoint){
         MethodSignature sign =  (MethodSignature)joinPoint.getSignature();
         Method method = sign.getMethod();
-        firstcut annotation = method.getAnnotation(firstcut.class);
+        Firstcut annotation = method.getAnnotation(Firstcut.class);
         System.out.println("打印：" + annotation.Value() + " 开始前");
         //System.out.println("===开始前===");
     }
