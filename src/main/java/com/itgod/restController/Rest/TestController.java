@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.InetAddress;
+
 /**
  * date: 2020/2/17 19:23
  * author: zhangsq
@@ -21,8 +23,9 @@ public class TestController {
         return "null";
     }
 
-    @GetMapping("/getAliDetectInfo")
-    public Boolean getAliDetectInfo(@RequestParam String bizToken) {
-        return null;
+    @GetMapping("/get")
+    public String getAliDetectInfo() throws Exception {
+        InetAddress addr = InetAddress.getLocalHost();
+        return addr.getHostName().toString();
     }
 }
