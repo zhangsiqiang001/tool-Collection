@@ -23,12 +23,25 @@ kind: Service
 metadata:
   name: springboot-demo
 spec:
-#  type: NodePort
   ports:
     - port: 80
       protocol: TCP
       targetPort: 8080
-#      nodePort: 30000
   selector:
     app: springboot-demo
 
+---
+#ingress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  rules:
+    - host: k8s-demo.jyhk.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: springboot-demo
+              servicePort: 80
