@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: springboot-demo
-          image: registry.cn-shanghai.aliyuncs.com/zhangsiqiang/k8s-demo:1.0
+          image: registry.cn-shanghai.aliyuncs.com/zhangsiqiang/k8s-demo:v1.0
           ports:
             - containerPort: 8080
 ---
@@ -29,5 +29,4 @@ spec:
       targetPort: 8080
   selector:
     app: springboot-demo
-
 
