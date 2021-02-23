@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-demo
+spec:
+  selector:
+    matchLabels:
+      app: springboot-demo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: springboot-demo
+    spec:
+      containers:
+        - name: springboot-demo
+          image: registry.cn-shanghai.aliyuncs.com/zhangsiqiang/k8s-demo:v1.0
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-demo
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: springboot-demo
+
+---
+#ingress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  rules:
+    - host: k8s-demo.jyhk.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: springboot-demo
+              servicePort: 80
