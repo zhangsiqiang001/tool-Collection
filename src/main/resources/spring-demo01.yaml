@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: otsp-nginx
+    spec:
+      containers:
+        - name: otsp-nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: 300Mi
+              cpu: 300m
+          volumeMounts:
+            - mountPath: "/etc/nginx/nginx.conf"
+              name: nginx-01
+            - mountPath: "/usr/share/nginx/html"
+              name: nginx-02
+      volumes:
+        - name: nginx-01
+          hostPath:
+            path: "/etc/nginx/nginx.conf"
+        - name: nginx-02
+          hostPath:
+            path: "/root/html"
+      imagePullSecrets:
+        - name: regcred-harbor
+
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:v1.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/usr/local/nginx/html/"
+              name: nginx-vol
+      volumes:
+        - name: nginx-vol
+          hostPath:
+            path: /html/

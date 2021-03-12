@@ -24,6 +24,7 @@ public class TestController {
 
     @Resource
     private SignatureVerifier signatureVerifier;
+
     @Firstcut(Value = "hello")
     @GetMapping("/backAliFace")
     public String backAliFace(@RequestParam(required = false) String redirectUrl) {
@@ -58,9 +59,10 @@ public class TestController {
         String s = signatureVerifier.verifySignature(testentity);
         return s;
     }
+
     @GetMapping("/entiytest")
     public String entiytest() {
-        long  timeNew =  System.currentTimeMillis();
+        long timeNew = System.currentTimeMillis();
         DoermeiUserInfoParam doermeiUserInfoParam = new DoermeiUserInfoParam();
         doermeiUserInfoParam.setToken("2500860ce7fef0285b6b32c86551d2f2");
         doermeiUserInfoParam.setTimestamp(timeNew);

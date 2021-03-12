@@ -1,0 +1,136 @@
+#ingress
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress02
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+
+spec:
+  tls:
+    - hosts:
+        - mylgc.jyhk.com
+      secretName: jyhk-secret
+  rules:
+    - host: mylgc.jyhk.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: otsp-nginx
+              servicePort: 80
+          - path: /user/(.*)$
+            backend:
+              serviceName: user
+              servicePort: 80
+          - path: /order/(.*)$
+            backend:
+              serviceName: order
+              servicePort: 80
+          - path: /otsp-account/(.*)$
+            backend:
+              serviceName: otsp-account
+              servicePort: 80
+          - path: /otsp-clinic-regulatory/(.*)$
+            backend:
+              serviceName: otsp-clinic-regulatory
+              servicePort: 80
+          - path: /otsp-auth/(.*)$
+            backend:
+              serviceName: otsp-auth
+              servicePort: 80
+          - path: /otsp-clinic/(.*)$
+            backend:
+              serviceName: otsp-clinic
+              servicePort: 80
+          - path: /otsp-file/(.*)$
+            backend:
+              serviceName: otsp-file
+              servicePort: 80
+          - path: /otsp-healidea/(.*)$
+            backend:
+              serviceName: otsp-healidea
+              servicePort: 80
+          - path: /otsp-im/(.*)$
+            backend:
+              serviceName: otsp-im
+              servicePort: 80
+          - path: /otsp-info/(.*)$
+            backend:
+              serviceName: otsp-info
+              servicePort: 80
+          - path: /otsp-interview/(.*)$
+            backend:
+              serviceName: otsp-interview
+              servicePort: 80
+          - path: /otsp-mall/(.*)$
+            backend:
+              serviceName: otsp-mall
+              servicePort: 80
+          - path: /otsp-manage-sys/(.*)$
+            backend:
+              serviceName: otsp-manage-sys
+              servicePort: 80
+          - path: /otsp-medical/(.*)$
+            backend:
+              serviceName: otsp-medical
+              servicePort: 80
+          - path: /otsp-medical-message/(.*)$
+            backend:
+              serviceName: otsp-medical-message
+              servicePort: 80
+          - path: /otsp-message/(.*)$
+            backend:
+              serviceName: otsp-message
+              servicePort: 80
+          - path: /otsp-questionnaire/(.*)$
+            backend:
+              serviceName: otsp-questionnaire
+              servicePort: 80
+          - path: /otsp-resource-exchange/(.*)$
+            backend:
+              serviceName: otsp-resource-exchange
+              servicePort: 80
+          - path: /otsp-schedule/(.*)$
+            backend:
+              serviceName: otsp-schedule
+              servicePort: 80
+          - path: /otsp-service/(.*)$
+            backend:
+              serviceName: otsp-service
+              servicePort: 80
+          - path: /otsp-shared-pharmacy/(.*)$
+            backend:
+              serviceName: otsp-shared-pharmacy
+              servicePort: 80
+          - path: /otsp-system/(.*)$
+            backend:
+              serviceName: otsp-system
+              servicePort: 80
+          - path: /otsp-user/(.*)$
+            backend:
+              serviceName: otsp-user
+              servicePort: 80
+          - path: /otsp-video/(.*)$
+            backend:
+              serviceName: otsp-video
+              servicePort: 80
+          - path: /otsp-weixin/(.*)$
+            backend:
+              serviceName: otsp-weixin
+              servicePort: 80
+          - path: /further-consultation-manage/
+            backend:
+              serviceName: otsp-nginx
+              servicePort: 81
+          - path: /internet-treatment-manage/
+            backend:
+              serviceName: otsp-nginx
+              servicePort: 82
+          - path: /medicine-management/
+            backend:
+              serviceName: otsp-nginx
+              servicePort: 83

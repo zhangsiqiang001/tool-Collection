@@ -17,6 +17,8 @@ spec:
           image: registry.cn-shanghai.aliyuncs.com/zhangsiqiang/k8s-demo:v1.0
           ports:
             - containerPort: 8080
+            - containerPort: 82
+
 ---
 apiVersion: v1
 kind: Service
@@ -29,6 +31,31 @@ spec:
       targetPort: 8080
   selector:
     app: springboot-demo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otsp-nginx02
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 82
+  selector:
+    app: otsp-nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otsp-nginx03
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 83
+  selector:
+    app: otsp-nginx
 
 ---
 #ingress
