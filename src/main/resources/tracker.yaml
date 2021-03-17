@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: js-storage
+spec:
+  selector:
+    matchLabels:
+      app: js-storage
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: js-storage
+    spec:
+      containers:
+        - name: js-storage
+          image: season/fastdfs
+          ports:
+            - containerPort: 22122
+          volumeMounts:
+            - mountPath: "/fastdfs/storage/data"
+              name: storage-01
+            - mountPath: "/fastdfs/store_path"
+              name: storage-02
+            - mountPath: "/fdfs_conf/storage.conf"
+              name: storage-03
+          command: ["/entrypoint.sh","storage"]
+      volumes:
+        - name: storage-01
+          hostPath:
+            path: "/root/otsp/fdfs/storage_data"
+        - name: storage-02
+          hostPath:
+            path: "/root/otsp/fdfs/store_path"
+        - name: storage-03
+          hostPath:
+            path: "/root/otsp/fdfs/storage.conf"

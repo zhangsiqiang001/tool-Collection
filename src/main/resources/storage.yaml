@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: js-tracker
+spec:
+  selector:
+    matchLabels:
+      app: js-tracker
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: js-tracker
+    spec:
+      hostNetwork: true
+      containers:
+        - name: js-tracker
+          image: season/fastdfs
+          ports:
+            - containerPort: 22122
+          volumeMounts:
+            - mountPath: "/fastdfs/tracker/data"
+              name: tracker-01
+          command: ["/entrypoint.sh","tracker"]
+      volumes:
+        - name: tracker-01
+          hostPath:
+            path: "/root/otsp/fdfs/tracker_data"

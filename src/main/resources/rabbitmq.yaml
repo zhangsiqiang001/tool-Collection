@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: js-rabbitmq
+spec:
+  selector:
+    matchLabels:
+      app: js-rabbitmq
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: js-rabbitmq
+    spec:
+      hostNetwork: true
+      containers:
+        - name: js-rabbitmq
+          image: rabbitmq:3.8.3-management
+          ports:
+            - containerPort: 4369
+            - containerPort: 5671
+            - containerPort: 5672
+            - containerPort: 15671
+            - containerPort: 15672
