@@ -7,19 +7,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.Resource;
-
 /**
  * @author zhangsq
  * @date 2021/5/31 11:07
  */
 @Component
 public class dojdSend {
-    @Resource
-    private RestTemplate restTemplate;
+
 
     @Scheduled(cron = "* 0 12 * * ? ")
     public void dojd_send() {
+        RestTemplate restTemplate = new RestTemplate();
         String content = JSON.toJSONString(null);
         HttpHeaders headers = new HttpHeaders();
         String xSignature = null;
