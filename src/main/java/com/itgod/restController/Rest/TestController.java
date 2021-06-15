@@ -4,8 +4,6 @@ import com.itgod.restController.Myannotation.Firstcut;
 import com.itgod.restController.entity.DoermeiUserInfoParam;
 import com.itgod.restController.entity.testentity;
 import com.itgod.restController.util.SignatureVerifier;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
