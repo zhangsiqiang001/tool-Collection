@@ -3,7 +3,8 @@ server:
 spring:
   profiles:
     active: dev
-
+  redis:
+    host: 139.196.197.153
 open:
   api:
     ak: aaaa
